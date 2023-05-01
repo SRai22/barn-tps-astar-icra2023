@@ -125,7 +125,9 @@ if __name__ == "__main__":
         tps_astar,
         'nav_goal:=['+ str(INIT_POSITION[0]+GOAL_POSITION[0])+','+
                        str(INIT_POSITION[1]+GOAL_POSITION[1])+','+ 
-                       str(INIT_POSITION[2]) +']'
+                       str(INIT_POSITION[2]) +']',
+        'start_pose:=['+ str(INIT_POSITION[0])+','+str(INIT_POSITION[1])+','+str(INIT_POSITION[2])+']',
+        'start_vel:=2.0'
     ])
     
     time.sleep(5) 
@@ -136,18 +138,18 @@ if __name__ == "__main__":
     # ])
     # Make sure your navigation stack recives a goal of (0, 10, 0), which is 10 meters away
     # along postive y-axis.
-    import actionlib
-    from move_base_msgs.msg import MoveBaseGoal, MoveBaseAction
-    nav_as = actionlib.SimpleActionClient('/move_base', MoveBaseAction)
-    mb_goal = MoveBaseGoal()
-    mb_goal.target_pose.header.frame_id = 'odom'
-    mb_goal.target_pose.pose.position.x = GOAL_POSITION[0]
-    mb_goal.target_pose.pose.position.y = GOAL_POSITION[1]
-    mb_goal.target_pose.pose.position.z = 0
-    mb_goal.target_pose.pose.orientation = Quaternion(0, 0, 0, 1)
+    # import actionlib
+    # from move_base_msgs.msg import MoveBaseGoal, MoveBaseAction
+    # nav_as = actionlib.SimpleActionClient('/move_base', MoveBaseAction)
+    # mb_goal = MoveBaseGoal()
+    # mb_goal.target_pose.header.frame_id = 'odom'
+    # mb_goal.target_pose.pose.position.x = GOAL_POSITION[0]
+    # mb_goal.target_pose.pose.position.y = GOAL_POSITION[1]
+    # mb_goal.target_pose.pose.position.z = 0
+    # mb_goal.target_pose.pose.orientation = Quaternion(0, 0, 0, 1)
 
-    nav_as.wait_for_server()
-    nav_as.send_goal(mb_goal)
+    # nav_as.wait_for_server()
+    # nav_as.send_goal(mb_goal)
 
     ##########################################################################################
     ## 2. Start navigation
