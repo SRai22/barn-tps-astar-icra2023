@@ -116,13 +116,24 @@ if __name__ == "__main__":
         "initial_pose_y:="+ str(INIT_POSITION[1]),
         'initial_pose_phi:='+str(INIT_POSITION[2])
     ])
-    
+
+    tps_astar = join(base_path, '..', 'tps_astar/launch/tps_astar_nav.launch')
+    print(tps_astar)
     time.sleep(5)
-    launch_file = join(base_path, '..', 'jackal_helper/launch/move_base_DWA.launch')
-    nav_stack_process = subprocess.Popen([
+    tps_astar_process = subprocess.Popen([
         'roslaunch',
-        launch_file,
+        tps_astar,
+        'nav_goal:=['+ str(INIT_POSITION[0]+GOAL_POSITION[0])+','+
+                       str(INIT_POSITION[1]+GOAL_POSITION[1])+','+ 
+                       str(INIT_POSITION[2]) +']'
     ])
+    
+    time.sleep(5) 
+    # launch_file = join(base_path, '..', 'jackal_helper/launch/move_base_DWA.launch')
+    # nav_stack_process = subprocess.Popen([
+    #     'roslaunch',
+    #     launch_file,
+    # ])
     # Make sure your navigation stack recives a goal of (0, 10, 0), which is 10 meters away
     # along postive y-axis.
     import actionlib
