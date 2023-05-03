@@ -118,8 +118,6 @@ if __name__ == "__main__":
     ])
 
     tps_astar = join(base_path, '..', 'tps_astar/launch/tps_astar_nav.launch')
-    print(tps_astar)
-    time.sleep(5)
     tps_astar_process = subprocess.Popen([
         'roslaunch',
         tps_astar,

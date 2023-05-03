@@ -26,6 +26,7 @@
 
   sudo apt-get install -y ros-<distro>-mrpt2 \
                           ros-<distro>-mrpt-msgs \
+                          ros-<distro>-marker-msgs
 ```
 * Add mrpt_navigation as a submodule using 
 ```
