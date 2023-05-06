@@ -127,8 +127,8 @@ if __name__ == "__main__":
         'start_pose:=['+ str(INIT_POSITION[0])+','+str(INIT_POSITION[1])+','+str(INIT_POSITION[2])+']',
         'start_vel:=2.0',
         'topic_map_sub:='+'map',
-        'topic_localization_sub:='+'mrpt_pose',
-        'topic_odometry_sub:='+'odom',
+        'topic_localization_sub:='+'/mrpt_pose',
+        'topic_odometry_sub:='+'/odometry/filtered',
         'topic_obstacles_sub:='+'/map_pointcloud'
     ])
     
