@@ -62,12 +62,14 @@ Follow the instructions below to run simulations on your local machines. (You ca
 1. Create a virtual environment (we show examples with python venv, you can use conda instead)
 ```
 apt -y update; apt-get -y install python3-venv
-python3 -m venv /<YOUR_HOME_DIR>/nav_challenge
-export PATH="/<YOUR_HOME_DIR>/nav_challenge/bin:$PATH"
+python3 -m venv $HOME/nav_challenge
+export PATH="$HOME/nav_challenge/bin:$PATH"
 ```
 
 2. Install Python dependencies
 ```
+# Activate (JL: needed?? If not, remove this line)
+. ~/nav_challenge/bin/activate
 pip3 install defusedxml rospkg netifaces numpy
 ```
 
@@ -96,8 +98,8 @@ rosdep install -y --from-paths . --ignore-src --rosdistro=$ROS_DISTRO
 
 6. Build the workspace (if `catkin_make` fails, try changing `-std=c++11` to `-std=c++17` in `jackal_helper/CMakeLists.txt` line 3)
 ```
-source devel/setup.bash
 catkin_make
+source devel/setup.bash
 ```
 
 
