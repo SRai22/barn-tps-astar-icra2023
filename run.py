@@ -129,7 +129,8 @@ if __name__ == "__main__":
         'topic_map_sub:='+'map',
         'topic_localization_sub:='+'/mrpt_pose',
         'topic_odometry_sub:='+'/odometry/filtered',
-        'topic_obstacles_sub:='+'/map_pointcloud'
+        'topic_obstacles_sub:='+'/map_pointcloud',
+        'topic_cmd_vel_pub:='+'/cmd_vel'
     ])
     
     time.sleep(5) 
@@ -220,3 +221,12 @@ if __name__ == "__main__":
         f.write("%d %d %d %d %.4f %.4f\n" %(args.world_idx, success, collided, (curr_time - start_time)>=100, curr_time - start_time, nav_metric))
     
     gazebo_process.terminate()
+    gazebo_process.wait()
+    mrpt_map_process.terminate()
+    mrpt_map_process.wait()
+    mrpt_obs_process.terminate()
+    mrpt_obs_process.wait()
+    mrpt_localization_process.terminate()
+    mrpt_localization_process.wait()
+    tps_astar_process.terminate()
+    tps_astar_process.wait()
