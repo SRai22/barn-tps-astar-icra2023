@@ -114,7 +114,8 @@ if __name__ == "__main__":
         'use_map_topic:='+'true', 
         'initial_pose_x:='+ str(INIT_POSITION[0]),
         "initial_pose_y:="+ str(INIT_POSITION[1]),
-        'initial_pose_phi:='+str(INIT_POSITION[2])
+        'initial_pose_phi:='+str(INIT_POSITION[2]),
+        'initial_pose_std_phi:='+str(1.5) # rad (1 sigma)
     ])
 
     tps_astar = join(base_path, '..', 'tps_astar/launch/tps_astar_nav.launch')
