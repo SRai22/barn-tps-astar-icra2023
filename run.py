@@ -118,6 +118,8 @@ if __name__ == "__main__":
         'initial_pose_std_phi:='+str(1.5) # rad (1 sigma)
     ])
 
+    time.sleep(5)
+    
     tps_astar = join(base_path, '..', 'tps_astar/launch/tps_astar_nav.launch')
     tps_astar_process = subprocess.Popen([
         'roslaunch',
@@ -134,7 +136,7 @@ if __name__ == "__main__":
         'topic_cmd_vel_pub:='+'/cmd_vel'
     ])
     
-    time.sleep(5) 
+     
     # launch_file = join(base_path, '..', 'jackal_helper/launch/move_base_DWA.launch')
     # nav_stack_process = subprocess.Popen([
     #     'roslaunch',
