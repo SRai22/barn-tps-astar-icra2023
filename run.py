@@ -83,8 +83,6 @@ if __name__ == "__main__":
         time.sleep(1)
 
 
-
-
     ##########################################################################################
     ## 1. Launch your navigation stack
     ## (Customize this block to add your own navigation stack)
