@@ -242,3 +242,5 @@ if __name__ == "__main__":
     mrpt_localization_process.wait()
     tps_astar_process.terminate()
     tps_astar_process.wait()
+    mrpt_reactivenav2d_process.terminate()
+    mrpt_reactivenav2d_process.wait()
