@@ -131,7 +131,8 @@ if __name__ == "__main__":
         'topic_localization_sub:='+'/mrpt_pose',
         'topic_odometry_sub:='+'/odometry/filtered',
         'topic_obstacles_sub:='+'/map_pointcloud',
-        'topic_cmd_vel_pub:='+'/cmd_vel'
+        'topic_cmd_vel_pub:='+'/enq_motion',
+        'topic_wp_seq_pub:='+'/waypoints'
     ])
     
      
