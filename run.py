@@ -134,6 +134,16 @@ if __name__ == "__main__":
         'topic_cmd_vel_pub:='+'/enq_motion',
         'topic_wp_seq_pub:='+'/waypoints'
     ])
+
+    mrpt_reactivenav2d = join(base_path, '..', 'tps_astar/launch/mrpt_reactivenav2d.launch')
+    mrpt_reactivenav2d_process = subprocess.Popen([
+        'roslaunch',
+        mrpt_reactivenav2d,
+        'topic_odometry:='+'/odometry/filtered',
+        'topic_obstacles:='+'/map_pointcloud',
+        'topic_cmd_vel:='+'/cmd_vel',
+        'topic_wp_seq:='+'/waypoints'
+    ])
     
      
     # launch_file = join(base_path, '..', 'jackal_helper/launch/move_base_DWA.launch')
