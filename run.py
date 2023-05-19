@@ -127,7 +127,7 @@ if __name__ == "__main__":
                        str(INIT_POSITION[2]) +']',
         'start_pose:=['+ str(INIT_POSITION[0])+','+str(INIT_POSITION[1])+','+str(INIT_POSITION[2])+']',
         'start_vel:=2.0',
-        'mrpt_gui:= true',
+        'mrpt_gui:= True',
         'topic_map_sub:='+'map',
         'topic_localization_sub:='+'/mrpt_pose',
         'topic_odometry_sub:='+'/odometry/filtered',
