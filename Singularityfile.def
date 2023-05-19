@@ -1,31 +1,54 @@
 Bootstrap: docker
-From: ros:melodic
+From: ros:noetic
 
 %setup
     mkdir -p ${SINGULARITY_ROOTFS}/jackal_ws/src
 
 %files
-    . /jackal_ws/src/nav-competition-icra2022
+    . /jackal_ws/src/barn-tps-astar-icra2023
 
 %post -c /bin/bash
-    apt -y update; apt-get -y install python3-venv
+    apt -y update; apt-get -y install python3 python3-venv
     python3 -m venv /venv
     export PATH="/venv/bin:$PATH"
     pip3 install --upgrade pip
-    pip3 install defusedxml rospkg netifaces numpy
-    
+    pip3 install empy defusedxml rospkg netifaces numpy 
+
+    apt-get install -y cmake
+    apt-get install -y protobuf-compiler libprotobuf-dev
+
+    apt-get install -y build-essential pkg-config cmake libopencv-dev libeigen3-dev zlib1g-dev \
+    libsuitesparse-dev libjpeg-dev libwxgtk3.0-gtk3-dev  freeglut3-dev libassimp-dev libglfw3-dev \
+    libglu1-mesa-dev libqt5opengl5-dev qtbase5-dev \
+    libxrandr-dev libxxf86vm-dev \
+    libcv-bridge-dev libgeometry-msgs-dev libnav-msgs-dev \
+    librosbag-storage-dev libroscpp-dev libsensor-msgs-dev \
+    libstd-srvs-dev libstereo-msgs-dev libtf2-dev \
+    libtf2-msgs-dev libbz2-dev
+
+    git clone https://github.com/MRPT/mrpt.git --recursive /opt/mrpt
+    cd /opt/mrpt
+    mkdir build-release && cd build-release
+    cmake .. -DCMAKE_BUILD_TYPE=Release -DMPRT_BUILD_EXAMPLES=OFF -DMRPT_BUILD_APPLICATIONS=OFF -DMRPT_BUILD_TESTING=OFF -DCMAKE_INSTALL_PREFIX=/bin -DMRPT_EXCEPTIONS_WITH_CALL_STACK=OFF
+    make -j`nproc`
+    make install
+
+
     cd /jackal_ws/src
-    git clone https://github.com/jackal/jackal.git --branch melodic-devel
-    git clone https://github.com/jackal/jackal_simulator.git --branch melodic-devel
-    git clone https://github.com/jackal/jackal_desktop.git --branch melodic-devel
+    git clone https://github.com/jackal/jackal.git
+    git clone https://github.com/jackal/jackal_simulator.git 
+    git clone https://github.com/jackal/jackal_desktop.git 
     git clone https://github.com/utexas-bwi/eband_local_planner.git
 
-    source /opt/ros/melodic/setup.bash
+    source /opt/ros/noetic/setup.bash
     cd ..
     rosdep init; rosdep update
-    rosdep install -y --from-paths . --ignore-src --rosdistro=melodic
-    source devel/setup.bash
+    rosdep install -y --from-paths . --ignore-src --rosdistro=noetic
+    apt-get install -y ros-noetic-mrpt2 ros-noetic-marker-msgs ros-noetic-pos-cov-ops
+
     catkin_make
+    source devel/setup.bash
+    
 
 %environment
     export PATH="/venv/bin:$PATH"
