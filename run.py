@@ -127,10 +127,12 @@ if __name__ == "__main__":
                        str(INIT_POSITION[2]) +']',
         'start_pose:=['+ str(INIT_POSITION[0])+','+str(INIT_POSITION[1])+','+str(INIT_POSITION[2])+']',
         'start_vel:=2.0',
+        'mrpt_gui:= true',
         'topic_map_sub:='+'map',
         'topic_localization_sub:='+'/mrpt_pose',
         'topic_odometry_sub:='+'/odometry/filtered',
         'topic_obstacles_sub:='+'/map_pointcloud',
+        'topic_replan_sub:='+'/replan',
         'topic_cmd_vel_pub:='+'/enq_motion',
         'topic_wp_seq_pub:='+'/waypoints'
     ])
