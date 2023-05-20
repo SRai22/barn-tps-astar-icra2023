@@ -1,43 +1,15 @@
 Bootstrap: docker
-From: ros:melodic
+From: osrf/ros:noetic-desktop-full
 
 %setup
     mkdir -p ${SINGULARITY_ROOTFS}/jackal_ws/src
-    mkdir -p ${SINGULARITY_ROOTFS}/MRPT/
 
-%files
-    . /jackal_ws/src/barn-tps-astar-icra2023
-
-%post -c /bin/bash
+%post
     apt-get update && apt-get upgrade -y
     apt-get install -y git cmake apt-utils
-    apt-get install -y \
-    libopencv-calib3d4.2 \
-    libopencv-core4.2 \
-    libopencv-features2d4.2 \
-    libopencv-highgui4.2 \
-    libopencv-imgcodecs4.2 \
-    libopencv-imgproc4.2 \
-    libopencv-objdetect4.2 \
-    libopencv-video4.2 \
-    libopencv-videoio4.2 \
-    libassimp5 \
-    liboctomap1.9 \
-    wget \
-    
-    
-    apt-get update \
-    && apt-get install -y \
-    cmake \
-    build-essential \
-    libeigen3-dev \
-    libopencv-dev \
-    libassimp-dev \
-    liboctomap-dev \
-    libsqlite3-dev \
-    libeigen3-dev \
-    protobuf-compiler libprotobuf-dev \
-    libxxf86vm-dev \
+	
+    echo "source /opt/ros/noetic/setup.bash" >> /etc/bash.bashrc
+    rm /etc/ros/rosdep/sources.list.d/20-default.list
 
     apt-get -y install python3 python3-venv
     python3 -m venv /venv
@@ -45,19 +17,16 @@ From: ros:melodic
     pip3 install --upgrade pip
     pip3 install empy defusedxml rospkg netifaces numpy 
 
-    source /opt/ros/melodic/setup.bash
-    rm /etc/ros/rosdep/sources.list.d/20-default.list
 
-    apt-get install -y ros-melodic-mrpt2 ros-melodic-marker-msgs ros-melodic-pos-cov-ops
-
-    cd /jackal_ws/src
-    
+    cd /jackal_ws/src 
     git clone https://github.com/jackal/jackal.git
     git clone https://github.com/jackal/jackal_simulator.git 
     git clone https://github.com/jackal/jackal_desktop.git 
     git clone https://github.com/utexas-bwi/eband_local_planner.git
 
-    cd ..
+    cd .. 
     rosdep init; rosdep update;
-    rosdep install -y --from-paths . --ignore-src --rosdistro=melodic
-    catkin_make
+    rosdep install -y --from-paths . --ignore-src --rosdistro=noetic
+
+%environment
+    export PATH="/venv/bin:$PATH"
