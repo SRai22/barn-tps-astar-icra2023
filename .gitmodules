@@ -1,9 +1,3 @@
 [submodule "tps_astar/submodules/selfdriving"]
 	path = tps_astar/submodules/selfdriving
 	url = https://github.com/jlblancoc/selfdriving.git
-[submodule "mrpt_navigation"]
-	path = mrpt_navigation
-	url = https://github.com/mrpt-ros-pkg/mrpt_navigation.git
-[submodule "mrpt_msgs"]
-	path = mrpt_msgs
-	url = https://github.com/mrpt-ros-pkg/mrpt_msgs.git
